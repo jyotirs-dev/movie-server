@@ -1,5 +1,5 @@
 var express = require('express');
-let router = express.Router({ mergeParams : true });
+var router = express.Router();
 var fs = require('fs');
 // variables
 const dataPath = './data/movie.json';
@@ -10,10 +10,8 @@ router.get('/', function(req, res, next) {
         if (err) {
           throw err;
         }
-        let parsedData= JSON.parse(data);
-        let filteredData = parsedData.map(movie=> movie.genres);
-        let genreArray = [...new Set([].concat(...filteredData))];
-        res.send(genreArray);
+  
+        res.send(JSON.parse(data));
       });
 });
 
