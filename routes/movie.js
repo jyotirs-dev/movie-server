@@ -11,9 +11,8 @@ router.get('/', function(req, res, next) {
           throw err;
         }
         let parsedData= JSON.parse(data);
-        let filteredData = parsedData.map(movie=> movie.genres);
-        let genreArray = [...new Set([].concat(...filteredData))];
-        res.send(genreArray);
+        let moviedetails = parsedData.filter(movie=> movie.id===req.params.movie);
+        res.send(moviedetails);
       });
 });
 
