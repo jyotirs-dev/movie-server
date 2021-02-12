@@ -9,7 +9,9 @@ const originalData = fs.readFileSync(dataPath)
 router.put('/', function(req, res, next) {
     let parsedData = JSON.parse(originalData);
     let editedData= JSON.parse(req.body.data);
-    const updatedData = parsedData.map(obj=>editedData.find(o => o.id===obj.id) || obj);
+    let moviearr =[]
+    moviearr.push(editedData);
+    const updatedData = parsedData.map(obj=>moviearr.find(o => o.id===obj.id) || obj);
     const jsonString = JSON.stringify(updatedData)
 
     fs.writeFile(dataPath, jsonString, err => {
