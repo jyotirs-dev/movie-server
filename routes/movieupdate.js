@@ -8,7 +8,9 @@ const originalData = fs.readFileSync(dataPath)
 /* Update movie listing. */
 router.put('/', function(req, res, next) {
     let parsedData = JSON.parse(originalData);
-    let editedData= JSON.parse(req.body.data);
+    console.log(req.body);
+    let editedData= req.body;
+    console.log(editedData);
     let moviearr =[]
     moviearr.push(editedData);
     const updatedData = parsedData.map(obj=>moviearr.find(o => o.id===obj.id) || obj);
