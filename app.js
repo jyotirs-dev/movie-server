@@ -9,6 +9,8 @@ var indexRouter = require('./routes/index');
 var moviesRouter = require('./routes/moviedata');
 var moviesByGenreRouter = require('./routes/moviebygenre');
 var moviesGenreListRouter = require('./routes/moviegenrelist');
+var movieRouter = require('./routes/movie');
+var movieUpdateRouter = require('./routes/movieupdate');
 
 var app = express();
 
@@ -24,9 +26,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/api/moviesdata', moviesRouter);
-app.use('/api/moviesdata/:genre', moviesByGenreRouter);
+app.use('/api/allmovies', moviesRouter);
 app.use('/api/moviesgenrelist', moviesGenreListRouter);
+app.use('/api/:genre', moviesByGenreRouter);
+app.use('/api/moviesdata/:movie', movieRouter);
+app.use('/api/moviesdata/:movie', movieUpdateRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
